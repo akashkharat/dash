@@ -1,0 +1,40 @@
+sudo apt-get install autoconf automake default-libmysqlclient-dev dos2unix libmariadbclient-dev libmariadbd-dev libtool mariadb-client mariadb-server unzip
+cd /etc/snort/snort.conf
+   output unified2: filename snort.u2, limit 128
+sudo mkdir dl
+cd dl
+sudo wget 
+sudo unzip barnyard2-master.zip
+cd barnyard2-master
+sudo ln -s /usr/include/dumbnet.h /usr/include/dnet.h
+sudo ./configure --with-mysql --with-mysql-libraries=/usr/lib/x86_64-linux-gnu/
+sudo make && sudo make install
+sudo cp etc/barnyard2.conf /etc/snort/
+sudo mkdir /var/log/barnyard2
+sudo chown -R snort:snort /var/log/barnyard2
+sudo touch /var/log/snort/barnyard2.waldo
+sudo chown -R snort:snort /var/log/snort/barnyard2.waldo
+sudo mysql -u root -p
+use mysql;
+update user set plugin='' where user='root';
+flush privileges;
+exit;
+sudo mysql_secure_installation
+sudo mysql -u root -p
+create database snort;
+use snort;
+source /home/shuhari/dl/barnyard2-master/schemas/create_mysql;
+create user 'snort'@'localhost' identified by '123';
+grant select,create,insert,update,delete on snort.* to 'snort'@'localhost';
+flush privileges;
+sudo nano /etc/snort/barnyard2.conf
+	output database: log, mysql, user=snort password=123 dbname=snort host=localhost
+sudo nano /etc/snort/rules/local.rules
+	alert ip any any -> any any (msg:"hello world";sid:10000001;rev:1;)
+cd ..
+sudo wget create_sidmap.pl path
+sudo chmod 755 create_sidmap.pl
+sudo ./create_sidmap.pl /etc/snort/rules/
+sudo sh -c './create_sidmap.pl /etc/snort/rules > /etc/snort/sid-msg.map'
+sudo snort -i ens33 -c /etc/snort/snort.conf -u snort -g snort
+sudo barnyard2 -c /etc/snort/barnyard2.conf -d /var/log/snort/ -f snort.u2 -w /var/log/snort/barnyard2.waldo -g snort -u snort

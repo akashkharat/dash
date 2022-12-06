@@ -1,0 +1,50 @@
+ss -ant | grep 3306
+sudo nano /etc/mysql/mariadb.conf.d/50.server.cnf
+	bind address = 0.0.0.0
+ss -ant | grep 3306
+	0.0.0.0:3306
+#in deb 10
+#check mariadb-server installed or not
+sudo mysql -u root -p
+grant create,select,insert,update,delete on snort.* to 'snort'@'deb 8 ip' identified by '123';
+flush privileges;
+exit;
+
+#in deb 8
+add repo -> deb http://deb.debian.org/debian jessie main
+apt-get update
+apt-get install sudo
+nano /etc/sudoers (add user privileges)
+apt-get install ssh
+sudo apt-get install mariadb-client -y
+mysql -usnort -p123 -h192.168.80.128(deb 10 ip)
+create database snort;
+use snort;
+show tables;
+exit;
+sudo apt-get install apache2 php5 p7zip libapache2-mod-php5 php5-mcrypt php5-mysqlnd libphp-adodb unzip
+sudo mkdir temp
+cd temp
+sudo wget base link
+sudo tar xzf base-1.4.5.tar.gz
+sudo mv base-1.4.5 /var/www/html/base/
+sudo nano /etc/php5/apache2/php.ini (line 449)
+	error_reporting=E ALL & ~E NOTICE (show all errors,expect for notice)
+sudo systemctl restart apache2
+# go to google and search ip 192.168.80.147/base/
+#1st stage 
+	language english
+	path :/usr/share/php/adodb/
+#2nd stage
+	host ip
+#3rd stage
+	nothing
+#4th stage
+	successful
+#5th stage
+	database name snort
+	-----\\-port 3306
+	----\\--user snort
+	----\\--password 123
+#final 
+	show table and database details

@@ -1,0 +1,29 @@
+sudo apt-get update
+uname -r
+	4.19.0-5-amd64
+sudo apt-get dist-upgrade
+restart pc
+uname -r
+sudo apt-get install automake ca-certificates gcc iptables-dev libnet-cidr-lite-perl libtext-csv-xs-perl linux-headers-$(uname -r) make pkg-config unzip wget xz-utils libc6-dev
+cd /tmp
+sudo wget take xtable-addons link on google
+sudo tar xf xtables-addons-3.22.tar.xz
+cd xtables-addons-3.22
+sudo ./configure && sudo make && sudo make install
+sudo mkdir xtables
+cd xtables
+sudo /usr/local/libexec/xtables-addons/xt_geoip_dl
+sudo mkdir /usr/share/xt_geoip
+sudo /usr/local/libexec/xtables_addons/xt_geoip_build -D /usr/share/xt_geoip /home/shuhari/xtables/dbip.country-life.csv
+sudo depmod -a
+sudo iptables -m geoip -h
+sudo iptables -L -v
+sudo iptables -A INPUT -m geoip --src-cc CN -j LOG --log-level debug --log-prefix "|hello|"
+sudo iptables -L -v
+sudo tail -f /var/log/syslog 
+
+
+
+#save iptable
+	sudo apt-get install iptables-persistent
+	sudo sh -c 'iptables-save > /etc/iptables/rules.v4'
