@@ -1,0 +1,18 @@
+we neet 3 machine for squid load balancing
+
+deb1 squid conf
+deb2 run apache2
+deb3 run nginx
+
+
+deb1 -
+	sudo apt-get install squid
+	sudo nano /etc/squid/squid.conf
+acl deb dstdomain 192.168.80.128
+http_access allow deb
+http_port 3128 accel defaultsite=192.168.80.128 vhost
+cache_peer 192.168.80.133 parent 80 0 originserver round-robin name=web1
+cache_peer 192.168.80.134 parent 80 0 originserver round-robin name=web2
+
+	sudo systemctl restart squid
+then edit apache and nginx files
