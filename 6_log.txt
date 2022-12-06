@@ -55,3 +55,7 @@ then add rules  to create a .rule in rules and add to the conf file
 --alter ip any any -> any any (msg:"hey";sid:10000025;)
 
 include $RULE_PATH/rule.rules
+
+snort -i 1 -c c:\snort\etc\snort.conf -l c:\snort\log -T -s
+install kiwi - in windows10
+ctrl+t
