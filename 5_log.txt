@@ -1,0 +1,22 @@
+sudo apt-get install tcpdump
+sudo tcpdump -D
+sudo tcpdump -i ens33 ---- to capture perticular traffic
+sudo tcpdump -i ens33 tcp/udp ---to filter
+sduo tcpdump -i ens33 -c 2 --- to capture 2packets
+sudo tcpdump -i ens33 -c 2 -n ---to check in numberic format
+sudo tcpdump -i ens33 -c 2 -w ab.bc ---to write a output of file
+sudo tcpdump -i ens33 -c 2 -r ab.bc ---to read a output of file
+tail -f temp ---to check source and distination
+sudo tcpdump host 192.168.68.1
+sudo tcpdump host www.ditiss.com
+sudo tcpdump dst host 192.168.68.134
+sudo tcpdump net 192.168.68.0/24
+sudo tcpdump dst net 192.168.64.0/24 ---distination ip network
+sudo tcpdump src host 192.168.64.0/24 ---source
+sudo tcpdump src net 192.168.64.134 --- source and network
+sudo tcpdump port 22 ---from ssh 22 
+sudo tcpdump src port 22 
+sudo tcpdump dst port 22 
+sudo tcpdump port range 20-23 
+sudo tcpdump -i ens33 -xxe ---hexa decimal
+sudo tcpdump -i ens33 -xxe -c 1 -s 7 ---hexa packet only 7bits

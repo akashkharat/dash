@@ -1,0 +1,57 @@
+snort windows
+install the snort.exe
+install the winpcap
+run snort from cmd as administrator
+extract the file to rules in snort
+check browser-ie.rules must be their
+cmd
+snort -W ---to check adapter
+snort -i 1
+snort -d ---application layer data
+snort -e ---link layer data
+snort -v ---verbose
+snort -i 1 -c c:\snort\etc\snort.conf -l c:\snort\log -A console
+snort.conf open in notpad++ 
+error-1
+	replace all ipvar to var
+	ctrl+s
+error-2
+	search snort_dynamicpreprocessor
+	dynamicpreprocessor c:\snort\lib\snort_dynamicpreprocessor\sf_dc...
+	copy here all the files 
+error-3
+	snort_dynamicengine/libsf_engine
+	to
+	dynamicengine c:\snort\lib\snort_dynamicengine\sf_engine.dil
+error-4
+	create folder to base - snort_dynamicrules
+error-5
+	-normalize_ip4
+	make all command below lines			
+error-6 
+	create new text files in rules white_list.rules and black_list.rules
+
+after this 
+ 	make changes 
+	var RULES_PATH ../rules 
+	var SO_RULE_PATH ../so_rules
+	var PREPROC_RULE_PATH ../prepro_rules
+	../ change to c:\snort\rules
+	
+	var white_list_path ../rules
+ 	to ..\
+	
+	whitelist$white_list_rule /
+	\
+	
+	blacklist.rules to black_list.rules
+
+now 
+at last 
+snort -i 1 -c c:\snort\etc\snort.conf -l c:\snort\log -T ---to test
+
+
+then add rules  to create a .rule in rules and add to the conf file
+--alter ip any any -> any any (msg:"hey";sid:10000025;)
+
+include $RULE_PATH/rule.rules
